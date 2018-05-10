@@ -1,0 +1,23 @@
+BEGIN;
+DROP TABLE IF EXISTS users ,comments,post CASCADE;
+
+CREATE TABLE users(
+id SERIAL PRIMARY KEY,
+username VARCHAR(100) UNIQUE NOT NULL,
+email VARCHAR(100) NOT NULL,
+password VARCHAR(100) NOT NULL);
+
+CREATE TABLE post(
+id SERIAL PRIMARY KEY,
+user_id INTEGER REFERENCES users(id),
+content TEXT DEFAULT 'no content',
+date TIMESTAMP DEFAULT now());
+
+CREATE TABLE comments(
+id SERIAL PRIMARY KEY,
+post_id INTEGER REFERENCES post(id),
+user_id INTEGER REFERENCES users(id),
+content TEXT DEFAULT 'no content',
+date TIMESTAMP DEFAULT now());
+
+COMMIT;
