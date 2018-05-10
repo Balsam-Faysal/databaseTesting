@@ -16,7 +16,16 @@ exports.getById = id => new Promise((resolve , reject)=>{
       values:[id]
     }
     dbConnection.query(ps , (err , res)=>{
-      console.log(res);
+      if(!err) return resolve(res.rows[0])
+      reject(err)
+    })
+})
+exports.DeleteById = id => new Promise((resolve , reject)=>{
+    const ps = {
+      text : `DELETE FROM users where id =$1 RETURNING *`,
+      values:[id]
+    }
+    dbConnection.query(ps , (err , res)=>{
       if(!err) return resolve(res.rows[0])
       reject(err)
     })

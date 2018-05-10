@@ -1,3 +1,4 @@
+require('env2')('./config.env');
 module.exports= ()=>{
   const { NODE_ENV , CURRENT_USED_DB, TEST_DB, DEVELOPMENT_DB, PRODUCTION_DB} = process.env ;
 

@@ -2,7 +2,7 @@ const dbConnection = require('../db_connection');
 
 exports.insert = post => new Promise((resolve , reject)=>{
     const ps = {
-      text : `INSERT INTO users(user_id,content) values ($1,$2) RETURNING`,
+      text : `INSERT INTO post(user_id,content) values ($1,$2) RETURNING`,
       values:[post.user_id ,post.content]
     }
     dbConnection.query(ps , (err , res)=>{
